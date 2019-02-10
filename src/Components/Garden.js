@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import Plot from './Plot'
 
 class Garden extends Component {
+    constructor () {
+      super()
+      this.state = { disable: false }
+    }
+
+    toggleDisable = () => this.setState(prevState => ({disable: !prevState.disable}))
 
     render() {
       let plots
