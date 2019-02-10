@@ -44,10 +44,7 @@ class App extends Component {
 
       const MyHomePage = (props) => {
       return (
-        <HomePage
-          data="foo"
-          // {...props}
-        />
+        <HomePage data="foo"/>
       );
     }
       return(

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Garden from './Garden'
-import Navbar from './Navbar'
 // import firebase from './firebase.js';
 
 class HomePage extends Component {
