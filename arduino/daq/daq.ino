@@ -1,4 +1,5 @@
 #include "DHT.h"
+#include "ArduinoJson.h"
 
 #define DHTPIN 6 
 #define DHTTYPE DHT11
@@ -6,6 +7,7 @@ DHT dht(DHTPIN, DHTTYPE);
 int soilMoist = 0;
 int soilPin = A0;
 int soilPower = 7;
+DynamicJsonBuffer jsonBuffer;
 
 void setup() {
   // put your setup code here, to run once:
@@ -21,13 +23,17 @@ void setup() {
 void loop() {
 
   float soilM = (float)readSoil();
-  float h = dht.readHumidity();
-  float t = dht.readTemperature();
+  float hum = dht.readHumidity();
+  float temp = dht.readTemperature();
 
-  Serial.println(soilM);
-  Serial.println(h);
-  Serial.println(t);
-  delay(1000);
+  JsonObject& root = jsonBuffer.createObject();
+  root["soil moisture"] = soilM;
+  root["temperature"] = temp;
+  root["humidity"] = hum;
+
+  root.printTo(Serial);
+  Serial.println("");
+  delay(3000);
    
 }
 
@@ -35,8 +41,6 @@ void loop() {
  * This function reads the soil moisture when it is called, and maps the resulting moisture value to
  * a scale from 0 to 100.   
  * 
- * AS OF 11:50 PM: Note that 0 corresponds to dry air, and 100 corresponds to just water. Further calibration is needed and
- * is not done in the arduino, but rather after the data is sent to the webapp.
  */
 int readSoil()
 {
