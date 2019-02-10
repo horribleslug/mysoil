@@ -14,48 +14,31 @@ class App extends Component {
             lat: "420",
             lon: "69",
             plots: [
-
               {
                 id: 1,
-                plants: [
-                  {
-                    name: "tomato",
-                    water: 7,
-                    date: "01/01/2019"
-                  },
-                  {
-                    name: "corn",
-                    water: 1,
-                    date: "01/02/2019"
-                  },
-                  {
-                    name: "eggplant",
-                    water: 3,
-                    date: "01/03/2019"
-                  },
-                ]
+                plant: "tomato",
+                water: 7,
+                date: "01/01/2019"
               },
-
               {
                 id: 2,
-                plants: [
-                  {
-                    name: "grape",
-                    water: 7,
-                    date: "01/01/2019"
-                  },
-                  {
-                    name: "zuchini",
-                    water: 11,
-                    date: "01/02/2019"
-                  },
-                  {
-                    name: "eggplant",
-                    water: 8,
-                    date: "01/05/2019"
-                  },
-                ]
-              }
+                plant: "corn",
+                water: 2,
+                date: "01/01/2019"
+              },
+              {
+                id: 3,
+                plant: "eggplant",
+                water: 3,
+                date: "01/01/2019"
+              },
+              {
+                id: 4,
+                plant: "carrot",
+                water: 7,
+                date: "01/01/2019"
+              },
+
             ]
           }
         ],
@@ -74,7 +57,7 @@ class App extends Component {
 
   // const api_call = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${Api_key}`);
   const api_call = await fetch(`http://api.openweathermap.org/data/2.5/weather?id=${cityid}&appid=${Api_key}`);
-  
+
   const response = await api_call.json();
 
     this.setState({
