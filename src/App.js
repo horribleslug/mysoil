@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import Garden from './Components/Garden';
 import PlotPage from './Components/PlotPage';
+import SignIn from './Components/SignIn';
+import CityPage from './Components/CityPage';
 import './App.css';
 import firebase from './Components/firebase.js';
+
 var waterLevels = [];
 class App extends Component {
   constructor() {
