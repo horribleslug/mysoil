@@ -33,7 +33,7 @@ class PlotPage extends Component {
     if (plant){
       return (
         <div>
-        <h1>{plant}</h1>
+        <h1>{plant.charAt(0).toUpperCase() + plant.slice(1)}</h1>
           <img className="plotimg" src={require("../Assets/" + plant + ".png")} alt={plant} />
           {lineChart}
         </div>
