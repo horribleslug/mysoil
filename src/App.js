@@ -18,12 +18,14 @@ class App extends Component {
   		gardens: []
   	}
 
-  	const newUsers = [];
+  	var newUsers = [];
   	const newState = [];
+    var gID = 'z';
   	db.collection("gardens").get().then((snapshot) => {
 	  	snapshot.docs.forEach(doc => {
 	  		var newplots = [];
-
+        console.log(doc.data().people);
+        newUsers = doc.data().people;
 	  		db.collection('gardens/' + doc.id + '/plots').get().then((plot) => {
 	  			plot.docs.forEach(info => {
 	  				newplots.push({
@@ -32,9 +34,10 @@ class App extends Component {
 	  					plant: info.data().plant,
 	  					water: info.data().water
 	  				});
+
 	  			})
 	  		});
-
+        
 	  		newState.push({
 	  			id: doc.id,
 	  			name: doc.data().name,
@@ -46,19 +49,24 @@ class App extends Component {
 	  	});
 
 	  });
-  	db.collection("users").get().then((snapshot) => {
+    console.log(gID);
+  	db.collection("gardens/"+gID+"/people").get().then((snapshot) => {
   		snapshot.docs.forEach(doc => {
-  			newUsers.push({
-  				id: doc.id,
-  				name: doc.data().name,
-  			});
-  			console.log(newUsers);
+  			// newUsers.push({
+  			// 	id: doc.id,
+  			// 	name: doc.data().name,
+  			// });
+  			//console.log(newUsers);
   		});
 	  	this.setState({
-			users: newUsers,
+      users: newUsers,
 			gardens: newState
 		});
   	});
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmitGarden = this.handleSubmitGarden.bind(this);
+    this.handleSubmitPerson = this.handleSubmitPerson.bind(this);
+    this.handleSubmitGardenID = this.handleSubmitGardenID.bind(this);
   }
 
 
@@ -85,7 +93,6 @@ class App extends Component {
     })
 
     console.log(response);
-
   }
 
   _showMessage = (bool) => {
@@ -102,13 +109,65 @@ class App extends Component {
       })
   }
 
+  handleChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  }
+
+  handleSubmitGarden(e) {
+    e.preventDefault();
+    const db = firebase.firestore();
+    const itemsRef = db.collection("gardens").add({
+      name: this.state.gardenName,
+      location: this.state.gardenLocation.split(',')
+    });
+    // make gardenID the newly added garden
+    console.log(itemsRef);
+  }
+
+  handleSubmitPerson(e) {
+    e.preventDefault();
+    const db = firebase.firestore();
+    if (this.state.gardenID === '')
+      return;
+    const itemsRef = db.collection("gardens/"+this.state.gardenID+"/people").add({
+      name: this.state.user,
+    });
+    // make gardenID the newly added garden
+    console.log(itemsRef);
+  }
+
+  handleSubmitGardenID(e) {
+    e.preventDefault();
+  }
+
     render(){
       return(
-        <div className="App">
-          <button className="Nav-button" onClick = {this._showMessage.bind(null, true)} >Enter</button>
-          {this.state.showHome && (<Garden data={this.state} toggle={this.handleToggle}/>)}
-          {this.state.showPlot && (<PlotPage data={this.state} toggle={this.handleToggle}/>)}
+        <div>
+          <div className="App">
+            <button className="Nav-button" onClick = {this._showMessage.bind(null, true)} >Enter</button>
+            {this.state.showHome && (<Garden data={this.state} toggle={this.handleToggle}/>)}
+            {this.state.showPlot && (<PlotPage data={this.state} toggle={this.handleToggle}/>)}
+          </div>
+
+          <div className="test">
+            <form onSubmit ={this.handleSubmitGarden}>
+              <input type="text" name="gardenName" placeholder="What's your garden name?" onChange={this.handleChange} value={this.state.gardenName} />
+              <input type="text" name="gardenLocation" placeholder="49.234123,-123.1231" onChange={this.handleChange} value={this.state.gardenLocation} />
+              <button>Add Garden</button>
+            </form>
+            <form onSubmit ={this.handleSubmitPerson}>
+              <input type="text" name="user" placeholder="Who would you like to add?" onChange={this.handleChange} value={this.state.user} />
+              <button>Add Person</button>
+            </form>
+            <form onSubmit ={this.handleChangeGardenID}>
+              <input type="text" name="gardenID" placeholder="What is the GardenID?" onChange={this.handleChange} value={this.state.gardenID} />
+              <button>Change Garden ID</button>
+            </form>
+          </div>
         </div>
+
       )
 
     }
