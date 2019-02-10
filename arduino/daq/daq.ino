@@ -6,7 +6,7 @@
 #include "DHT.h"
 #include "ArduinoJson.h"
 
-#define DHTPIN 6 
+#define DHTPIN 6
 #define DHTTYPE DHT11
 DHT dht(DHTPIN, DHTTYPE);
 int soilMoist = 0;
@@ -18,9 +18,9 @@ void setup() {
   Serial.begin(9600);
   dht.begin();
   delay(2000);
-  
+
 }
-/*  
+/*
  * This loop reads soil moisture, ambient temperature, and relative humidity
  * once per day. Note that time between readings is customizable!
  * Values are written to serial and then processed elsewhere.
@@ -43,13 +43,13 @@ void loop() {
 
   //this is the time taken between subsequent readings.
   delay(3000);
-   
+
 }
 
-/* 
+/*
  * This function reads the soil moisture when it is called, and maps the resulting moisture value to
- * a scale from 0 to 100.   
- * 
+ * a scale from 0 to 100.
+ *
  */
 int readSoil()
 {
@@ -57,5 +57,5 @@ int readSoil()
     delay(1000);
     int soilMoist = analogRead(soilPin);
     digitalWrite(soilPower, LOW);
-    return map(soilMoist, 0, 820, 0, 100);  
+    return map(soilMoist, 0, 820, 0, 100);
 }
