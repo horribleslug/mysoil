@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
-<<<<<<< HEAD
-import Garden from './Components/Garden';
-import Data from './Components/Data';
-import PlotPage from './Components/PlotPage'
-=======
 import PlotPage from './Components/PlotPage';
 import HomePage from './Components/HomePage';
->>>>>>> 74d2e47e878bff1532bbea2e0c2b09f0e0394e54
 import './App.css';
 
+import ReactDOM from 'react-dom';
+import { OpenWeatherMap } from 'react-weather';
 
 class App extends Component {
 
@@ -43,22 +39,12 @@ class App extends Component {
       )
     }
 
-<<<<<<< HEAD
-
-
-  render() {
-    return (
-      <div className="App">
-        <Garden garden={this.state.gardens[0]} users={this.state.users}/>
-        <PlotPage plots={this.state.plots} weather={this.state.weather} needsWater={this.state.needsWater}/>
-        <Data/>
-      </div>
-    );
-  }
-=======
->>>>>>> 74d2e47e878bff1532bbea2e0c2b09f0e0394e54
 }
 
+ReactDOM.render(
+  <OpenWeatherMap city="Vancouver" country="CA" appid="2926b160c0bbfab56e181013c8308ab0" />,
+  document.getElementById('root')
+)
 
 
 export default App;
