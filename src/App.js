@@ -149,11 +149,29 @@ class App extends Component {
     e.preventDefault();
   }
 
+  handleLogIn = (displayName) => {
+    if(displayName === "logout"){
+
+      this.setState({
+        showMenu: false
+      });
+    } else {
+    this.setState({
+      showMenu: true
+    });
+
+    }
+  }
+
     render(){
       return(
         <div>
           <div className="App">
-            <button className="Nav-button" onClick = {this._showMessage.bind(null, true)} >Enter</button>
+          <img className="logo" src={require("./Assets/logo.png")} alt="logo"/>
+          <SignIn status={this.handleLogIn}/>
+
+            {this.state.showCity && (<CityPage data={this.state.gardens} toggle={this.handleToggle}/>)}
+            {this.state.showMenu && <img onClick = {this._showMessage.bind(null, true)} className="icon" src={require("./Assets/home.png")} alt={"home"} />}
             {this.state.showHome && (<Garden data={this.state} toggle={this.handleToggle}/>)}
             {this.state.showPlot && (<PlotPage water={waterLevels} data={this.state} toggle={this.handleToggle}/>)}
           </div>
