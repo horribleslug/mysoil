@@ -29,7 +29,8 @@ class SignIn extends Component {
     var lineChart = (
       <div
         style={{
-          width: "500px",
+          margin: "auto",
+          width: "300px",
           height: "300px"
         }}
       >
@@ -73,10 +74,12 @@ class SignIn extends Component {
       <div>
       {this.state.isSignedIn ?
       <span>
-      <h1>Welcome {firebase.auth().currentUser.displayName}</h1>
-      <img className="profpic" alt="profile pic" src={firebase.auth().currentUser.photoURL}/>
       <br/>
+      <img className="profpic" alt="profile pic" src={firebase.auth().currentUser.photoURL}/>
+      <h3 className="center">Welcome {firebase.auth().currentUser.displayName}</h3>
       <button onClick={() => firebase.auth().signOut() & this.props.status("logout")}>Sign Out</button>
+      <br/>
+      <br/>
       {lineChart}
       </span>
     :

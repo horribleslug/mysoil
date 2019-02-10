@@ -13,7 +13,7 @@ class CityPage extends Component {
     if(this.props.data){
       gardens = this.props.data.map(garden => {
         return (
-            <GardenItem key={garden.name} params={garden} click={this.handleClick.bind()}/>
+          <GardenItem key={garden.name} params={garden} click={this.handleClick.bind()}/>
         );
       });
     }

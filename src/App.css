@@ -92,3 +92,9 @@ button {
   height: 200px;
   overflow:scroll;
 }
+
+h3 {
+  font-size: 36px;
+  margin-block-end: 0;
+  margin-block-start: 0;
+}
