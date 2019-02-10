@@ -7,7 +7,20 @@ class App extends Component {
       super();
 
       this.state = {
-        users: [],
+        users: [
+          {
+            name: "Jake Paul",
+          },
+          {
+            name: "Jon Kim",
+          },
+          {
+            name: "Vandy Liu",
+          },
+          {
+            name: "Brandy Qiu",
+          },
+        ],
         gardens: [
           {
             name: "Kerrisdale South",
@@ -38,6 +51,42 @@ class App extends Component {
                 water: 7,
                 date: "01/01/2019"
               },
+              {
+                id: 4,
+                plant: "carrot",
+                water: 7,
+                date: "01/01/2019"
+              },
+              {
+                id: 4,
+                plant: "carrot",
+                water: 7,
+                date: "01/01/2019"
+              },
+              {
+                id: 4,
+                plant: "carrot",
+                water: 7,
+                date: "01/01/2019"
+              },
+              {
+                id: 4,
+                plant: "carrot",
+                water: 7,
+                date: "01/01/2019"
+              },
+              {
+                id: 4,
+                plant: "carrot",
+                water: 7,
+                date: "01/01/2019"
+              },
+              {
+                id: 4,
+                plant: "carrot",
+                water: 7,
+                date: "01/01/2019"
+              },
 
             ]
           }
@@ -49,9 +98,8 @@ class App extends Component {
 
   e.preventDefault();
 
-  const city = "Vancouver";
-
-  const country = "Canada";
+  // const city = "Vancouver";
+  // const country = "Canada";
   const cityid = 6173331;
   const Api_key = "2926b160c0bbfab56e181013c8308ab0";
 
@@ -77,11 +125,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Garden garden={this.state.gardens[0]}/>
-        <button onClick={this.getWeather} />
+        <Garden garden={this.state.gardens[0]} users={this.state.users}/>
       </div>
     );
   }
 }
 
 export default App;
+// <button onClick={this.getWeather} />

@@ -4,12 +4,11 @@ class Garden extends Component {
 
 
   render() {
-    console.log(this.props.params);
+    let params = this.props.params;
+    console.log(params);
     return (
-      <div>
-        <p>
-          plot
-        </p>
+      <div className="carouselItem">
+        <img className="plotimg" src={require("../Assets/" + params.plant + ".png")} alt={params.plant} />
       </div>
     );
   }
