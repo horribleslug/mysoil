@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import firebase from './firebase.js';
+import { Chart } from "react-charts";
 
 class SignIn extends Component {
   state={isSignedIn: false}
@@ -34,22 +35,22 @@ class SignIn extends Component {
         <Chart
           data={[
             {
-              label: "Corn",
+              label: "Series 1",
               data: [[0, 1], [1, 2],
               [2, 3], [3, 4]]
             },
             {
-              label: "Corn",
+              label: "Series 2",
               data: [[0, 1], [1, 2],
               [2, 3], [3, 4]]
             },
             {
-              label: "Corn",
+              label: "Series 3",
               data: [[0, 1], [1, 2],
               [2, 3], [3, 4]]
             },
             {
-              label: "Corn",
+              label: "Series 4",
               data: [[0, 1], [1, 2],
               [2, 3], [3, 4]]
             }
