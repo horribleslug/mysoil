@@ -37,23 +37,28 @@ class SignIn extends Component {
           data={[
             {
               label: "Series 1",
-              data: [[0, 1], [1, 2],
-              [2, 3], [3, 4]]
+              data: [[0, 27], [1, 25],
+              [2, 23], [3, 95]]
             },
             {
               label: "Series 2",
-              data: [[0, 1], [1, 2],
-              [2, 3], [3, 4]]
+              data: [[0, 65], [1, 63],
+              [2, 56], [3, 52]]
             },
             {
               label: "Series 3",
-              data: [[0, 1], [1, 2],
-              [2, 3], [3, 4]]
+              data: [[0, 32], [1, 12],
+              [2, 54], [3, 42]]
             },
             {
               label: "Series 4",
-              data: [[0, 1], [1, 2],
-              [2, 3], [3, 4]]
+              data: [[0, 82], [1, 76],
+              [2, 72], [3, 68]]
+            },
+            {
+              label: "Series 5",
+              data: [[0, 56], [1, 53],
+              [2, 45], [3, 34]]
             }
           ]}
           axes={[
@@ -68,10 +73,11 @@ class SignIn extends Component {
       <div>
       {this.state.isSignedIn ?
       <span>
-      <br/>
-      <button onClick={() => firebase.auth().signOut() & this.props.status("logout")}>Sign Out</button>
       <h1>Welcome {firebase.auth().currentUser.displayName}</h1>
       <img className="profpic" alt="profile pic" src={firebase.auth().currentUser.photoURL}/>
+      <br/>
+      <button onClick={() => firebase.auth().signOut() & this.props.status("logout")}>Sign Out</button>
+      {lineChart}
       </span>
     :
     <StyledFirebaseAuth
