@@ -4,9 +4,6 @@ import PlotPage from './Components/PlotPage';
 import './App.css';
 import firebase from './Components/firebase.js';
 
-import ReactDOM from 'react-dom';
-import { OpenWeatherMap } from 'react-weather';
-
 class App extends Component {
   constructor() {
   	const db = firebase.firestore();
@@ -113,16 +110,12 @@ class App extends Component {
           {this.state.showPlot && (<PlotPage data={this.state} toggle={this.handleToggle}/>)}
         </div>
       )
-
     }
-
 }
 
-ReactDOM.render(
-  <OpenWeatherMap city="Vancouver" country="CA" appid="2926b160c0bbfab56e181013c8308ab0" />,
-  document.getElementById('root')
-)
+
 
 
 export default App;
 // <button onClick={this.getWeather} />
+//          <OpenWeatherMap city="Vancouver" country="CA" appid="2926b160c0bbfab56e181013c8308ab0"/>

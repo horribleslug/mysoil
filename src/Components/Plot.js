@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Garden extends Component {
+class Plot extends Component {
 
 
   render() {
@@ -13,4 +13,4 @@ class Garden extends Component {
   }
 }
 
-export default Garden;
+export default Plot;
