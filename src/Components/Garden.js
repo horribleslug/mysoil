@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import Plot from './Plot'
 import Profile from './Profile'
-import Task from './Task'
+// import Task from './Task'
 
 class Garden extends Component {
+
+  handleToggle = (plant) => {
+    this.props.toggle(plant);
+  }
 
     render() {
       let data = this.props.data;
@@ -12,8 +16,7 @@ class Garden extends Component {
       if(data.gardens[0].plots){
         plots = data.gardens[0].plots.map(plot => {
           return (
-              <Plot key={plot.id} params={plot} />
-              // <button onClick={this.handleToggle}>yeet</button>
+              <Plot key={plot.id} params={plot} toggle={this.handleToggle.bind()}/>
           );
         });
       }
