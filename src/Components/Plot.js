@@ -12,7 +12,6 @@ class Plot extends Component {
     return (
       <div className="carouselItem" onClick={this.handleToggle}>
         <img className="plotimg" src={require("../Assets/" + params.plant + ".png")} alt={params.plant} />
-
       </div>
     );
   }
