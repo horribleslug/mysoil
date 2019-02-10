@@ -1,3 +1,8 @@
+/*
+ * This daq program is based on the official guides (by the manufacturers) of each of the sensors
+ * as well as the ArduinoJson library.
+ */
+
 #include "DHT.h"
 #include "ArduinoJson.h"
 
@@ -10,15 +15,17 @@ int soilPower = 7;
 DynamicJsonBuffer jsonBuffer;
 
 void setup() {
-  // put your setup code here, to run once:
   Serial.begin(9600);
   dht.begin();
+  delay(2000);
   
 }
 /*  
  * This loop reads soil moisture, ambient temperature, and relative humidity
- * every four hours.
+ * once per day. Note that time between readings is customizable!
  * Values are written to serial and then processed elsewhere.
+ * DynamicJsonBuffer necessitates that the device be restarted every ~50 days or so (assuming readings
+ * of once a day.)
  */
 void loop() {
 
@@ -33,6 +40,8 @@ void loop() {
 
   root.printTo(Serial);
   Serial.println("");
+
+  //this is the time taken between subsequent readings.
   delay(3000);
    
 }
