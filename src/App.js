@@ -13,12 +13,17 @@ class App extends Component {
   	super();
   	this.state = {
   		user: '',
-  		gardenID: '',
+  		plotID: '',
+  		gardenID: 'LoobbVOv92bX9AUKaT74', //change
   		gardenName: '',
   		gardenLocation: '',
   		task: '',
   		users: [],
   		gardens: [],
+<<<<<<< HEAD
+=======
+  		waterlevels: []
+>>>>>>> vandy
   	}
 
   	var newUsers = [];
@@ -64,7 +69,7 @@ class App extends Component {
   			//console.log(newUsers);
   		});
 	  	this.setState({
-      users: newUsers,
+      		users: newUsers,
 			gardens: newState
 		});
   	});
@@ -113,6 +118,18 @@ class App extends Component {
           showPlot: !this.state.showPlot,
       })
       if(plant){
+        const db = firebase.firestore();
+	    db.collection("gardens/"+this.state.gardenID+"/plots").get().then((snapshot) => {
+	      snapshot.docs.forEach(doc => {
+	        if (this.state.plant === doc.data().plant) {
+	          console.log(doc.data().soilMoisture);
+	          this.setState({
+	            plotID: doc.id,
+	            waterlevels: doc.data().soilMoisture
+	          });
+	        }
+	      })
+	    })
         this.setState({
           plant: plant
         })
