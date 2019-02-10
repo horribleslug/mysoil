@@ -24,6 +24,44 @@ class SignIn extends Component {
   }
 
   render(){
+    var lineChart = (
+      <div
+        style={{
+          width: "500px",
+          height: "300px"
+        }}
+      >
+        <Chart
+          data={[
+            {
+              label: "Corn",
+              data: [[0, 1], [1, 2],
+              [2, 3], [3, 4]]
+            },
+            {
+              label: "Corn",
+              data: [[0, 1], [1, 2],
+              [2, 3], [3, 4]]
+            },
+            {
+              label: "Corn",
+              data: [[0, 1], [1, 2],
+              [2, 3], [3, 4]]
+            },
+            {
+              label: "Corn",
+              data: [[0, 1], [1, 2],
+              [2, 3], [3, 4]]
+            }
+          ]}
+          axes={[
+            { primary: true, type: "linear", position: "bottom" },
+            { type: "linear", position: "left" }
+          ]}
+        />
+      </div>
+    );
+
     return(
       <div>
       {this.state.isSignedIn ?
@@ -39,7 +77,6 @@ class SignIn extends Component {
     firebaseAuth={firebase.auth()}
     />
   }
-
     </div>
     )
   }
