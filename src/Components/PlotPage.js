@@ -6,8 +6,16 @@ class PlotPage extends Component {
     let plant = this.props.data.plant;
     let waterLevels = this.props.water;
     console.log(waterLevels);
+    int daysToNextWater;
+    if(waterLevels[3]<30){
+      daysToNextWater = 0;
+    }
+    else{
+      daysToNextWater = (int)waterLevels[3]*(0.1)-3;
+    }
+    var waterDay =  daysToNextWater + ' days until next watering.'
     var lineChart = (
-      // A react-chart hyper-responsively and continuusly fills the available
+      // A react-chart hyper-responsively and continuously fills the available
       // space of its parent element automatically
       <div
         style={{
@@ -42,10 +50,12 @@ class PlotPage extends Component {
 
       return (
         <h1>Plot</h1>
+        <h3>waterDay<h3>
       );
-
     }
+
   }
+
 }
 
 export default PlotPage;
