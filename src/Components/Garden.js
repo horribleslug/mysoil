@@ -50,10 +50,6 @@ class Garden extends Component {
           <div className="People">
             {users}
           </div>
-                    <h2>People</h2>
-                    <div className="People">
-                      {users}
-                    </div>
         </div>
       );
     }

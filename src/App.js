@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import PlotPage from './Components/PlotPage';
 import HomePage from './Components/HomePage';
-import Navbar from './Components/Navbar';
 import './App.css';
-import { HashRouter, Route } from 'react-router-dom'
 
 class App extends Component {
 
@@ -32,28 +30,9 @@ class App extends Component {
     console.log(response);
 
   }
-  // render() {
-  //   return (
-  //     <div className="App">
-  //       <Garden garden={this.state.gardens[0]} users={this.state.users} tasks={this.state.tasks}/>
-  //     </div>
-  //   );
-  // }
     render(){
-
-      const MyHomePage = (props) => {
-      return (
-        <HomePage data="foo"/>
-      );
-    }
       return(
-      <HashRouter>
-        <div>
-          <Route exact path="/" render={MyHomePage} />
-          <Route path="/plot" component={PlotPage} />
-          <Navbar/>
-        </div>
-      </HashRouter>
+      <HomePage />
       )
     }
 
