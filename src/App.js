@@ -66,7 +66,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Garden garden={this.state.gardens}/>
+        <Garden garden={this.state.gardens[0]}/>
       </div>
     );
   }

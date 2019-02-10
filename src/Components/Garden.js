@@ -4,11 +4,13 @@ class Garden extends Component {
 
 
   render() {
-    console.log(this.props);
+    console.log(this.props.garden);
     return (
-      <p>
-        yo hi
-      </p>
+      <div>
+        <h1>
+        {this.props.garden.name}
+        </h1>
+      </div>
     );
   }
 }
