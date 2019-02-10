@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { Component } from 'react';
 import Plot from './Plot'
 import Profile from './Profile'
@@ -35,3 +36,18 @@ class PlotPage extends Component {
   }
 }
 export default PlotPage;
+=======
+import React, { Component } from 'react';
+
+class PlotPage extends Component {
+
+
+  render() {
+    return (
+      <h1>Plot</h1>
+    );
+  }
+}
+
+export default PlotPage;
+>>>>>>> 74d2e47e878bff1532bbea2e0c2b09f0e0394e54
