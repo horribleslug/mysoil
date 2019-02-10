@@ -6,6 +6,7 @@ class PlotPage extends Component {
     let plant = this.props.data.plant;
     let waterLevels = this.props.water;
     console.log(waterLevels);
+    
     var lineChart = (
       // A react-chart hyper-responsively and continuusly fills the available
       // space of its parent element automatically

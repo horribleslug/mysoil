@@ -12,6 +12,8 @@ class App extends Component {
   	const db = firebase.firestore();
   	super();
   	this.state = {
+      logo: "logo-big",
+      showSignIn: true,
   		user: '',
   		gardenID: '',
   		gardenName: '',
@@ -100,12 +102,6 @@ class App extends Component {
     console.log(response);
   }
 
-  _showMessage = (bool) => {
-      this.setState({
-          showHome: bool,
-          showPlot: !bool,
-      })
-  }
 
   handleToggle = (plant) => {
       this.setState({
@@ -154,27 +150,35 @@ class App extends Component {
 
   handleLogIn = (displayName) => {
     if(displayName === "logout"){
-
       this.setState({
-        showMenu: false
+        showMenu: false,
+        logo: "logo-big"
       });
     } else {
     this.setState({
-      showMenu: true
+      showMenu: true,
+      logo: "logo-small"
     });
 
     }
   }
 
+  menuClick = () => {
+    this.setState({
+      showSignIn: false,
+      showHome: true,
+    })
+  }
     render(){
       return(
         <div>
           <div className="App">
-          <img className="logo" src={require("./Assets/logo.png")} alt="logo"/>
-          <SignIn status={this.handleLogIn}/>
+          <img className={this.state.logo} src={require("./Assets/logo.png")} alt="logo"/>
+          {this.state.showSignIn && <SignIn status={this.handleLogIn}/>}
 
             {this.state.showCity && (<CityPage data={this.state.gardens} toggle={this.handleToggle}/>)}
-            {this.state.showMenu && <img onClick = {this._showMessage.bind(null, true)} className="icon" src={require("./Assets/home.png")} alt={"home"} />}
+            <br/>
+            {this.state.showMenu && <img onClick = {this.menuClick} className="icon" src={require("./Assets/home.png")} alt={"home"} />}
             {this.state.showHome && (<Garden data={this.state} toggle={this.handleToggle}/>)}
             {this.state.showPlot && (<PlotPage water={waterLevels} data={this.state} toggle={this.handleToggle}/>)}
           </div>
