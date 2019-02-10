@@ -59,3 +59,8 @@ button {
   border-width: 0;
   box-shadow: 0 6px 42px -17px black;
 }
+
+.profpic {
+  border-radius: 100px;
+  width: 120px;
+}
