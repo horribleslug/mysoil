@@ -4,15 +4,14 @@ import { Chart } from "react-charts";
 class PlotPage extends Component {
   render() {
     let plant = this.props.data.plant;
-    let waterLevels = this.props.water;
-    console.log(waterLevels);
-    
+
+    var waterLevels = this.props.data.waterlevels;
     var lineChart = (
       // A react-chart hyper-responsively and continuusly fills the available
       // space of its parent element automatically
       <div
         style={{
-          width: "600px",
+          width: "500px",
           height: "300px"
         }}
       >
