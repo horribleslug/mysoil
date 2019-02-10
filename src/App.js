@@ -48,12 +48,11 @@ class App extends Component {
             // console.log(waterLevels);
 	  			})
 	  		});
-
 	  		newState.push({
 	  			id: doc.id,
 	  			name: doc.data().name,
 	  			location: doc.data().location,
-	  			//users: doc.data().people,
+	  			users: doc.data().people,
 	  			tasks: doc.data().tasks,
 	  			plots: newplots
 	  		});
@@ -179,19 +178,6 @@ class App extends Component {
   }
 
     handleGardenClick = (garden) => {
-      // var gardenD;
-      //   const db = firebase.firestore();
-      // db.collection("gardens/").get().then((snapshot) => {
-      //   snapshot.docs.forEach(doc => {
-      //     if (garden === doc.id){
-      //       console.log(doc.data())
-      //       this.setState({
-      //         gardenData: doc.data()
-      //       })
-      //       // gardenD = doc.data();
-      //     }
-      //   })
-      // })
 
       for (var i = 0; i < this.state.gardens.length; i++){
         if (this.state.gardens[i].id === garden){
@@ -200,8 +186,6 @@ class App extends Component {
           })
         }
       }
-
-
       this.setState({
           showHome: true,
           showPlot: false,
