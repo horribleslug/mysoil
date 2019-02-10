@@ -74,8 +74,10 @@ class App extends Component {
 
   // const api_call = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${Api_key}`);
   const api_call = await fetch(`http://api.openweathermap.org/data/2.5/weather?id=${cityid}&appid=${Api_key}`);
+  //white space for a test, delete if you want
   
   const response = await api_call.json();
+
 
     this.setState({
       temperature: response.main.temp,
@@ -89,6 +91,7 @@ class App extends Component {
     console.log(response);
 
   }
+
 
 
   render() {
