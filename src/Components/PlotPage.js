@@ -1,15 +1,41 @@
 import React, { Component } from 'react';
+import { Chart } from "react-charts";
 
 class PlotPage extends Component {
-
-
   render() {
     let plant = this.props.data.plant;
+    let waterLevels = this.props.water;
+    console.log(waterLevels);
+    var lineChart = (
+      // A react-chart hyper-responsively and continuusly fills the available
+      // space of its parent element automatically
+      <div
+        style={{
+          width: "600px",
+          height: "300px"
+        }}
+      >
+        <Chart
+          data={[
+            {
+              label: "Series 1",
+              data: [[0, waterLevels[0]], [1, waterLevels[1]],
+              [2, waterLevels[2]], [3, waterLevels[3]]]
+            }
+          ]}
+          axes={[
+            { primary: true, type: "linear", position: "bottom" },
+            { type: "linear", position: "left" }
+          ]}
+        />
+      </div>
+    );
     if (plant){
       return (
         <div>
         <h1>{plant.charAt(0).toUpperCase() + plant.slice(1)}</h1>
           <img className="plotimg" src={require("../Assets/" + plant + ".png")} alt={plant} />
+          {lineChart}
         </div>
       );
     } else {
