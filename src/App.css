@@ -58,6 +58,7 @@ button {
   border-radius: 60px;
   border-width: 0;
   box-shadow: 0 6px 42px -17px black;
+  margin: 8px;
 }
 
 .profpic {
@@ -79,4 +80,15 @@ button {
   transition-property: width;
   transition-duration: 2s;
   transition-timing-function: linear;
+}
+
+.Map {
+  scale: 75%;
+}
+
+.div-map {
+  width: 95%;
+  margin: auto;
+  height: 200px;
+  overflow:scroll;
 }

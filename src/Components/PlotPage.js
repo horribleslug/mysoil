@@ -11,7 +11,8 @@ class PlotPage extends Component {
       // space of its parent element automatically
       <div
         style={{
-          width: "500px",
+          margin: "auto",
+          width: "300px",
           height: "300px"
         }}
       >

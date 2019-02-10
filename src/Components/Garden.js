@@ -11,7 +11,8 @@ class Garden extends Component {
 
     render() {
       let data = this.props.data;
-      // console.log(data);
+      let gard = this.props.data.currentGarden;
+      console.log(gard);
       let plots
       if(data.gardens[0].plots){
         plots = data.gardens[0].plots.map(plot => {
@@ -28,14 +29,7 @@ class Garden extends Component {
           );
         });
       }
-      // let tasks
-      // if(data.tasks){
-      //   tasks = data.tasks.map(task => {
-      //     return (
-      //         <Task key={task.name} params={task} />
-      //     );
-      //   });
-      // }
+
       return (
         <div className="Garden">
           <h1>{data.gardens[0].name}</h1>
@@ -44,7 +38,6 @@ class Garden extends Component {
           <div className="Plots">
             {plots}
           </div>
-
 
           <h2>People</h2>
           <div className="People">
@@ -55,9 +48,3 @@ class Garden extends Component {
     }
 }
 export default Garden;
-
-
-          // <h2>Tasks</h2>
-          // <div className="Tasks">
-          //   {tasks}
-          // </div>

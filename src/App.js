@@ -13,6 +13,7 @@ class App extends Component {
   	super();
   	this.state = {
       logo: "logo-big",
+      currentGarden: '',
       showSignIn: true,
   		user: '',
   		plotID: '',
@@ -31,7 +32,7 @@ class App extends Component {
   	db.collection("gardens").get().then((snapshot) => {
 	  	snapshot.docs.forEach(doc => {
 	  		var newplots = [];
-        console.log(doc.data().people);
+        // console.log(doc.data().people);
         newUsers = doc.data().people;
 	  		db.collection('gardens/' + doc.id + '/plots').get().then((plot) => {
 	  			plot.docs.forEach(info => {
@@ -43,7 +44,7 @@ class App extends Component {
 	  				});
             waterLevels = info.data().soilMoisture;
             // waterLevels = waterLevels;
-            console.log(waterLevels);
+            // console.log(waterLevels);
 	  			})
 	  		});
 
@@ -51,14 +52,14 @@ class App extends Component {
 	  			id: doc.id,
 	  			name: doc.data().name,
 	  			location: doc.data().location,
-	  			people: doc.data().people,
+	  			//users: doc.data().people,
 	  			tasks: doc.data().tasks,
 	  			plots: newplots
 	  		});
 	  	});
 
 	  });
-    console.log(gID);
+    // console.log(gID);
   	db.collection("gardens/"+gID+"/people").get().then((snapshot) => {
   		snapshot.docs.forEach(doc => {
   			// newUsers.push({
@@ -69,7 +70,7 @@ class App extends Component {
   		});
 	  	this.setState({
       		users: newUsers,
-			gardens: newState
+			    gardens: newState
 		});
   	});
     this.handleChange = this.handleChange.bind(this);
@@ -155,6 +156,7 @@ class App extends Component {
       name: this.state.user,
     });
     // make gardenID the newly added garden
+
     console.log(itemsRef);
   }
 
@@ -176,26 +178,43 @@ class App extends Component {
 
     }
   }
+    handleGardenClick = (garden) => {
+        this.setState({
+            showHome: true,
+            showPlot: false,
+            showCity: false,
+            showSignIn: false,
+        })
 
-  menuClick = () => {
+    }
+
+  cityClick = () => {
     this.setState({
       showSignIn: false,
-      showHome: true,
+      showHome: false,
       showPlot: false,
-
+      showCity: true,
     })
   }
+    menuClick = () => {
+      this.setState({
+        showSignIn: true,
+        showHome: false,
+        showCity: false,
+        showPlot: false,
+      })
+    }
 
     render(){
       return(
         <div>
           <div className="App">
           <img className={this.state.logo} src={require("./Assets/logo.png")} alt="logo"/>
-          {this.state.showSignIn && <SignIn status={this.handleLogIn}/>}
-
-            {this.state.showCity && (<CityPage data={this.state.gardens} toggle={this.handleToggle}/>)}
             <br/>
+            {this.state.showMenu && <img onClick = {this.cityClick} className="icon" src={require("./Assets/city.png")} alt={"city"} />}
             {this.state.showMenu && <img onClick = {this.menuClick} className="icon" src={require("./Assets/home.png")} alt={"home"} />}
+            {this.state.showSignIn && <SignIn status={this.handleLogIn}/>}
+            {this.state.showCity && (<CityPage data={this.state.gardens} click={this.handleGardenClick}/>)}
             {this.state.showHome && (<Garden data={this.state} toggle={this.handleToggle}/>)}
             {this.state.showPlot && (<PlotPage water={waterLevels} data={this.state} />)}
           </div>
