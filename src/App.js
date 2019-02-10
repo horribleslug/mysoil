@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PlotPage from './Components/PlotPage';
 import HomePage from './Components/HomePage';
+import Navbar from './Components/Navbar';
 import './App.css';
 import { HashRouter, Route } from 'react-router-dom'
 
@@ -40,11 +41,21 @@ class App extends Component {
   //   );
   // }
     render(){
+
+      const MyHomePage = (props) => {
+      return (
+        <HomePage
+          data="foo"
+          // {...props}
+        />
+      );
+    }
       return(
       <HashRouter>
         <div>
-          <Route exact path="/" component={HomePage} />
+          <Route exact path="/" render={MyHomePage} />
           <Route path="/plot" component={PlotPage} />
+          <Navbar/>
         </div>
       </HashRouter>
       )

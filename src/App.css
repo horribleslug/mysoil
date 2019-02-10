@@ -38,3 +38,8 @@ body, html {
   height: 100%;
   width: 100%;
 }
+
+.Navbar {
+    position: fixed;
+    bottom: 0;
+}

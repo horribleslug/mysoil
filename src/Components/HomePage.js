@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Garden from './Garden'
+import Navbar from './Navbar'
+// import firebase from './firebase.js';
 
 class HomePage extends Component {
-
-
     constructor() {
         super();
 
@@ -113,13 +113,15 @@ class HomePage extends Component {
         }
     }
 
+
   render() {
     return (
       <div className="App">
-        <Garden garden={this.state.gardens[0]} users={this.state.users} tasks={this.state.tasks}/>
+        <Garden data={this.state}/>
       </div>
     );
   }
 }
 
 export default HomePage;
+//

@@ -5,7 +5,6 @@ class Garden extends Component {
 
   render() {
     let params = this.props.params;
-    console.log(params);
     return (
       <div className="carouselItem">
         <img className="plotimg" src={require("../Assets/" + params.plant + ".png")} alt={params.plant} />

@@ -4,33 +4,29 @@ import Profile from './Profile'
 import Task from './Task'
 
 class Garden extends Component {
-    constructor () {
-      super()
-      this.state = { disable: false }
-    }
-
-    toggleDisable = () => this.setState(prevState => ({disable: !prevState.disable}))
 
     render() {
+      let data = this.props.data;
+      console.log(data);
       let plots
-      if(this.props.garden.plots){
-        plots = this.props.garden.plots.map(plot => {
+      if(data.gardens[0].plots){
+        plots = data.gardens[0].plots.map(plot => {
           return (
               <Plot key={plot.id} params={plot} />
           );
         });
       }
       let users
-      if(this.props.users){
-        users = this.props.users.map(user => {
+      if(data.users){
+        users = data.users.map(user => {
           return (
               <Profile key={user.name} params={user} />
           );
         });
       }
       let tasks
-      if(this.props.tasks){
-        tasks = this.props.tasks.map(task => {
+      if(data.tasks){
+        tasks = data.tasks.map(task => {
           return (
               <Task key={task.name} params={task} />
           );
@@ -38,7 +34,7 @@ class Garden extends Component {
       }
       return (
         <div className="Garden">
-          <h1>{this.props.garden.name}</h1>
+          <h1>{data.gardens[0].name}</h1>
 
           <h2>Plots</h2>
           <div className="Plots">
@@ -54,6 +50,10 @@ class Garden extends Component {
           <div className="People">
             {users}
           </div>
+                    <h2>People</h2>
+                    <div className="People">
+                      {users}
+                    </div>
         </div>
       );
     }
