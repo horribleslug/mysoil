@@ -1,51 +1,48 @@
-#include <ArduinoJson.h>
-#include <SoftwareSerial.h>
+#include "DHT.h"
 
-const int capacity = JSON_OBJECT_SIZE(3);
-StaticJsonBuffer<capacity> jb;
+#define DHTPIN 6 
+#define DHTTYPE DHT11
+DHT dht(DHTPIN, DHTTYPE);
+int soilMoist = 0;
 int soilPin = A0;
+int soilPower = 7;
 
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
-  
+  dht.begin();
   
 }
-
+/*  
+ * This loop reads soil moisture, ambient temperature, and relative humidity
+ * every four hours.
+ * Values are written to serial and then processed elsewhere.
+ */
 void loop() {
-// This loop reads soil moisture, ambient temperature, and relative humidity
-// every four hours.
-// Values are written to serial and then processed elsewhere.
 
-  soil_moisture = readSoil();
-  temperature = readTemp();
-  rhum = readHumid();
-  delay(14400000);
+  float soilM = (float)readSoil();
+  float h = dht.readHumidity();
+  float t = dht.readTemperature();
+
+  Serial.println(soilM);
+  Serial.println(h);
+  Serial.println(t);
+  delay(1000);
    
 }
 
-/* This function reads the soil moisture when it is called, and maps the resulting moisture value to
-   
-   */
+/* 
+ * This function reads the soil moisture when it is called, and maps the resulting moisture value to
+ * a scale from 0 to 100.   
+ * 
+ * AS OF 11:50 PM: Note that 0 corresponds to dry air, and 100 corresponds to just water. Further calibration is needed and
+ * is not done in the arduino, but rather after the data is sent to the webapp.
+ */
 int readSoil()
 {
     digitalWrite(soilPower, HIGH);
-    delay(10);//wait 10 milliseconds 
+    delay(1000);
     int soilMoist = analogRead(soilPin);
     digitalWrite(soilPower, LOW);
-    return map(soilMoist, 0, 880, 0, 100);  
-}
-
-int readTemp()
-{
-  digitalWrite(tempPow, HIGH);
-  delay(10);
-  int temperature = analogRead(tempPin);
-  digitalWrite(tempPow, LOW);
-  return temperature;
-}
-
-int readHumid()
-{
-  digitalWrite(H
+    return map(soilMoist, 0, 820, 0, 100);  
 }
