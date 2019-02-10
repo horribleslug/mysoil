@@ -65,8 +65,18 @@ button {
   width: 120px;
 }
 
-.logo {
+.logo-big {
   margin-top: 50px;
   margin-bottom: 20px;
   width: 256px;
+  transition-property: width;
+  transition-duration: 2s;
+  transition-timing-function: linear;
+}
+
+.logo-small {
+  height: 44px;
+  transition-property: width;
+  transition-duration: 2s;
+  transition-timing-function: linear;
 }

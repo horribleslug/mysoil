@@ -4,7 +4,7 @@ class CityPage extends Component {
 
   render() {
       return (
-        <h1>CityPage</h1>
+        <h1>City</h1>
       );
 
     }

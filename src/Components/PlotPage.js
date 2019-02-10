@@ -4,6 +4,10 @@ import { Chart } from "react-charts";
 class PlotPage extends Component {
   render() {
     let plant = this.props.data.plant;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9b866c763a6774a8ec89169ee7527bc4bad88f85
     var waterLevels = this.props.data.waterlevels;
     var lineChart = (
       <div

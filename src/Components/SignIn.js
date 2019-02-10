@@ -19,6 +19,7 @@ class SignIn extends Component {
   componentDidMount = () =>{
     firebase.auth().onAuthStateChanged(user=>{
       this.setState({isSignedIn:!!user})
+      
       this.props.status(firebase.auth().currentUser.displayName)
     })
 

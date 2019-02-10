@@ -12,6 +12,8 @@ class App extends Component {
   	const db = firebase.firestore();
   	super();
   	this.state = {
+      logo: "logo-big",
+      showSignIn: true,
   		user: '',
   		plotID: '',
   		gardenID: 'LoobbVOv92bX9AUKaT74', //change
@@ -102,12 +104,6 @@ class App extends Component {
     console.log(response);
   }
 
-  _showMessage = (bool) => {
-      this.setState({
-          showHome: bool,
-          showPlot: !bool,
-      })
-  }
 
   handleToggle = (plant) => {
       this.setState({
@@ -168,45 +164,40 @@ class App extends Component {
 
   handleLogIn = (displayName) => {
     if(displayName === "logout"){
-
       this.setState({
-        showMenu: false
+        showMenu: false,
+        logo: "logo-big"
       });
     } else {
     this.setState({
-      showMenu: true
+      showMenu: true,
+      logo: "logo-small"
     });
 
     }
+  }
+
+  menuClick = () => {
+    this.setState({
+      showSignIn: false,
+      showHome: true,
+      showPlot: false,
+
+    })
   }
 
     render(){
       return(
         <div>
           <div className="App">
-          <img className="logo" src={require("./Assets/logo.png")} alt="logo"/>
-          <SignIn status={this.handleLogIn}/>
+          <img className={this.state.logo} src={require("./Assets/logo.png")} alt="logo"/>
+          {this.state.showSignIn && <SignIn status={this.handleLogIn}/>}
 
             {this.state.showCity && (<CityPage data={this.state.gardens} toggle={this.handleToggle}/>)}
-            {this.state.showMenu && <img onClick = {this._showMessage.bind(null, true)} className="icon" src={require("./Assets/home.png")} alt={"home"} />}
+            <br/>
+            {this.state.showMenu && <img onClick = {this.menuClick} className="icon" src={require("./Assets/home.png")} alt={"home"} />}
             {this.state.showHome && (<Garden data={this.state} toggle={this.handleToggle}/>)}
-            {this.state.showPlot && (<PlotPage water={waterLevels} data={this.state} toggle={this.handleToggle}/>)}
-          </div>
-
-          <div className="test">
-            <form onSubmit ={this.handleSubmitGarden}>
-              <input type="text" name="gardenName" placeholder="What's your garden name?" onChange={this.handleChange} value={this.state.gardenName} />
-              <input type="text" name="gardenLocation" placeholder="49.234123,-123.1231" onChange={this.handleChange} value={this.state.gardenLocation} />
-              <button>Add Garden</button>
-            </form>
-            <form onSubmit ={this.handleSubmitPerson}>
-              <input type="text" name="user" placeholder="Who would you like to add?" onChange={this.handleChange} value={this.state.user} />
-              <button>Add Person</button>
-            </form>
-            <form onSubmit ={this.handleChangeGardenID}>
-              <input type="text" name="gardenID" placeholder="What is the GardenID?" onChange={this.handleChange} value={this.state.gardenID} />
-              <button>Change Garden ID</button>
-            </form>
+            {this.state.showPlot && (<PlotPage water={waterLevels} data={this.state} />)}
           </div>
         </div>
 
@@ -220,3 +211,21 @@ class App extends Component {
 export default App;
 // <button onClick={this.getWeather} />
 //          <OpenWeatherMap city="Vancouver" country="CA" appid="2926b160c0bbfab56e181013c8308ab0"/>
+
+
+
+// <div className="test">
+//   <form onSubmit ={this.handleSubmitGarden}>
+//     <input type="text" name="gardenName" placeholder="What's your garden name?" onChange={this.handleChange} value={this.state.gardenName} />
+//     <input type="text" name="gardenLocation" placeholder="49.234123,-123.1231" onChange={this.handleChange} value={this.state.gardenLocation} />
+//     <button>Add Garden</button>
+//   </form>
+//   <form onSubmit ={this.handleSubmitPerson}>
+//     <input type="text" name="user" placeholder="Who would you like to add?" onChange={this.handleChange} value={this.state.user} />
+//     <button>Add Person</button>
+//   </form>
+//   <form onSubmit ={this.handleChangeGardenID}>
+//     <input type="text" name="gardenID" placeholder="What is the GardenID?" onChange={this.handleChange} value={this.state.gardenID} />
+//     <button>Change Garden ID</button>
+//   </form>
+// </div>
