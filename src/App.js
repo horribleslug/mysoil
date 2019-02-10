@@ -20,10 +20,7 @@ class App extends Component {
   		task: '',
   		users: [],
   		gardens: [],
-<<<<<<< HEAD
-=======
   		waterlevels: []
->>>>>>> vandy
   	}
 
   	var newUsers = [];
