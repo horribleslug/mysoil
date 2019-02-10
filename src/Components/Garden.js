@@ -5,8 +5,8 @@ import Profile from './Profile'
 
 class Garden extends Component {
 
-  handleToggle = () => {
-    this.props.toggle();
+  handleToggle = (plant) => {
+    this.props.toggle(plant);
   }
 
     render() {
@@ -16,7 +16,7 @@ class Garden extends Component {
       if(data.gardens[0].plots){
         plots = data.gardens[0].plots.map(plot => {
           return (
-              <Plot key={plot.id} params={plot} toggle={this.handleToggle}/>
+              <Plot key={plot.id} params={plot} toggle={this.handleToggle.bind()}/>
           );
         });
       }

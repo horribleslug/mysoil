@@ -95,11 +95,16 @@ class App extends Component {
       })
   }
 
-  handleToggle = () => {
+  handleToggle = (plant) => {
       this.setState({
           showHome: !this.state.showHome,
           showPlot: !this.state.showPlot,
       })
+      if(plant){
+        this.setState({
+          plant: plant
+        })
+      }
   }
 
     render(){
