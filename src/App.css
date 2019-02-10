@@ -1,9 +1,14 @@
 .App {
   text-align: center;
-  width: 480px;
   height: 100%;
   margin: auto;
   padding: 30px 30px 30px 30px;
+}
+
+@media only screen and (min-width: 480px) {
+  .App {
+    width: 480px;
+  }
 }
 
 .plotimg, .profileimg {
@@ -16,8 +21,6 @@
   margin: 20px 10px 20px 10px;
   padding: 50px 20px 50px 20px;
   background-color: white;
-
-  /* box-shadow: 0px 6px 32px rgba(0, 0, 0, .2); */
   box-shadow: 0 6px 42px -17px black;
 }
 
@@ -28,7 +31,7 @@ h2 {
   margin-block-end: 0;
 }
 
-.Plots, .People {
+.Plots, .People, .Tasks {
   overflow: auto;
   white-space: nowrap;
 }
@@ -37,4 +40,27 @@ body, html {
   background-color: #f4f4f4;
   height: 100%;
   width: 100%;
+}
+
+button {
+  background-color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 14px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+.icon {
+  padding: 20px;
+  width: 42px;
+  height: 42px;
+  background-color: white;
+  border-radius: 60px;
+  border-width: 0;
+  box-shadow: 0 6px 42px -17px black;
+}
+
+.profpic {
+  border-radius: 100px;
+  width: 120px;
 }
