@@ -4,6 +4,8 @@ import { Chart } from "react-charts";
 class PlotPage extends Component {
   render() {
     let plant = this.props.data.plant;
+    let waterLevels = this.props.water;
+    console.log(waterLevels);
     var lineChart = (
       // A react-chart hyper-responsively and continuusly fills the available
       // space of its parent element automatically
@@ -17,7 +19,8 @@ class PlotPage extends Component {
           data={[
             {
               label: "Series 1",
-              data: [[0, 79], [1, 74], [2, 60], [3, 57], [4, 54], [5, 53]]
+              data: [[0, waterLevels[0]], [1, waterLevels[1]],
+              [2, waterLevels[2]], [3, waterLevels[3]]]
             }
           ]}
           axes={[

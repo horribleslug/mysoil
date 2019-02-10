@@ -3,7 +3,7 @@ import Garden from './Components/Garden';
 import PlotPage from './Components/PlotPage';
 import './App.css';
 import firebase from './Components/firebase.js';
-
+var waterLevels = [];
 class App extends Component {
   constructor() {
   	const db = firebase.firestore();
@@ -15,7 +15,7 @@ class App extends Component {
   		gardenLocation: '',
   		task: '',
   		users: [],
-  		gardens: []
+  		gardens: [],
   	}
 
   	var newUsers = [];
@@ -32,12 +32,14 @@ class App extends Component {
 	  					id: info.id,
 	  					date: info.data().date,
 	  					plant: info.data().plant,
-	  					water: info.data().water
+	  					water: info.data().water,
 	  				});
-
+            waterLevels = info.data().soilMoisture;
+            // waterLevels = waterLevels;
+            console.log(waterLevels);
 	  			})
 	  		});
-        
+
 	  		newState.push({
 	  			id: doc.id,
 	  			name: doc.data().name,
@@ -153,7 +155,7 @@ class App extends Component {
           <div className="App">
             <button className="Nav-button" onClick = {this._showMessage.bind(null, true)} >Enter</button>
             {this.state.showHome && (<Garden data={this.state} toggle={this.handleToggle}/>)}
-            {this.state.showPlot && (<PlotPage data={this.state} toggle={this.handleToggle}/>)}
+            {this.state.showPlot && (<PlotPage water={waterLevels} data={this.state} toggle={this.handleToggle}/>)}
           </div>
 
           <div className="test">
