@@ -110,7 +110,7 @@ class App extends Component {
     render(){
       return(
         <div className="App">
-          <button className="Nav-button" onClick = {this._showMessage.bind(null, true)} >Enter</button>
+          <img onClick = {this._showMessage.bind(null, true)} className="icon" src={require("./Assets/home.png")} alt={"home"} />
           {this.state.showHome && (<Garden data={this.state} toggle={this.handleToggle}/>)}
           {this.state.showPlot && (<PlotPage data={this.state} toggle={this.handleToggle}/>)}
         </div>
