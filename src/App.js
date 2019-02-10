@@ -6,7 +6,6 @@ import SignIn from './Components/SignIn';
 import './App.css';
 import firebase from './Components/firebase.js';
 
-
 class App extends Component {
   constructor() {
   	const db = firebase.firestore();
@@ -151,20 +150,30 @@ class App extends Component {
     e.preventDefault();
   }
 
-  handleLogIn() {
-    console.log('loggedin');
+  handleLogIn = (displayName) => {
+    if(displayName === "logout"){
+
+      this.setState({
+        showMenu: false
+      });
+    } else {
+    this.setState({
+      showMenu: true
+    });
+
+    }
   }
 
     render(){
       return(
         <div>
           <div className="App">
-            <img onClick = {this._showMessage.bind(null, true)} className="icon" src={require("./Assets/home.png")} alt={"home"} />
+          <img className="logo" src={require("./Assets/logo.png")} alt="logo"/>
+          <SignIn status={this.handleLogIn}/>
             {this.state.showCity && (<CityPage data={this.state.gardens} toggle={this.handleToggle}/>)}
             {this.state.showHome && (<Garden data={this.state} toggle={this.handleToggle}/>)}
             {this.state.showPlot && (<PlotPage data={this.state} toggle={this.handleToggle}/>)}
-            <SignIn status={this.handleLogIn}/>
-
+            {this.state.showMenu && <img onClick = {this._showMessage.bind(null, true)} className="icon" src={require("./Assets/home.png")} alt={"home"} />}
 
           </div>
         </div>
