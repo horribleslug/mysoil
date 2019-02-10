@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 
-
 class Plot extends Component {
 
   handleToggle = () => {
     this.props.toggle(this.props.params.plant);
     console.log(this.props.params.plant);
+    // from plant gather plot id
   }
 
   render() {

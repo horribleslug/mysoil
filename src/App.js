@@ -18,7 +18,7 @@ class App extends Component {
   		gardenName: '',
   		gardenLocation: '',
   		task: '',
-  		users: [],
+  		people: [],
   		gardens: [],
   		waterlevels: []
   	}
@@ -29,11 +29,11 @@ class App extends Component {
   	db.collection("gardens").get().then((snapshot) => {
 	  	snapshot.docs.forEach(doc => {
 	  		var newplots = [];
-        console.log(doc.data().people);
-        newUsers = doc.data().people;
+        	console.log(doc.data().people);
+        	newUsers = doc.data().people;
 	  		db.collection('gardens/' + doc.id + '/plots').get().then((plot) => {
 	  			plot.docs.forEach(info => {
-	  				newplots.push({
+	  				newplots.push({					// add if then statement to make sure id is equal
 	  					id: info.id,
 	  					date: info.data().date,
 	  					plant: info.data().plant,
@@ -47,7 +47,6 @@ class App extends Component {
 	  			id: doc.id,
 	  			name: doc.data().name,
 	  			location: doc.data().location,
-	  			people: doc.data().people,
 	  			tasks: doc.data().tasks,
 	  			plots: newplots
 	  		});
