@@ -1,9 +1,14 @@
 .App {
   text-align: center;
-  width: 480px;
   height: 100%;
   margin: auto;
   padding: 30px 30px 30px 30px;
+}
+
+@media only screen and (min-width: 480px) {
+  .App {
+    width: 480px;
+  }
 }
 
 .plotimg, .profileimg {
@@ -37,11 +42,4 @@ body, html {
   background-color: #f4f4f4;
   height: 100%;
   width: 100%;
-}
-
-.Navbar {
-    position: fixed;
-    bottom: 0;
-    background-color: blue;
-    width: 100%;
 }
