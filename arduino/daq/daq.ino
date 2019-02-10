@@ -10,7 +10,7 @@ int soilPower = 7;
 DynamicJsonBuffer jsonBuffer;
 
 void setup() {
-  // put your setup code here, to run once:
+  delay(2000);
   Serial.begin(9600);
   dht.begin();
   
