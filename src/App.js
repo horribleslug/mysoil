@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Garden from './Components/Garden';
+import Data from './Components/Data';
 import './App.css';
+
 
 class App extends Component {
   constructor() {
@@ -67,9 +69,12 @@ class App extends Component {
     return (
       <div className="App">
         <Garden garden={this.state.gardens[0]}/>
+        <Data/>
       </div>
     );
   }
 }
+
+
 
 export default App;
