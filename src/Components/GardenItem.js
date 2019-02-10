@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class GardenItem extends Component {
 
   handleClickGarden = () => {
-    this.props.click(this.props.params.name);
+    this.props.click(this.props.params.id);
   }
 
   render() {

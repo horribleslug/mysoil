@@ -23,7 +23,8 @@ class App extends Component {
   		task: '',
   		users: [],
   		gardens: [],
-  		waterlevels: []
+  		waterlevels: [],
+      gardenData: []
   	}
 
   	var newUsers = [];
@@ -105,7 +106,6 @@ class App extends Component {
     console.log(response);
   }
 
-
   handleToggle = (plant) => {
       this.setState({
           showHome: !this.state.showHome,
@@ -175,17 +175,40 @@ class App extends Component {
       showMenu: true,
       logo: "logo-small"
     });
-
     }
   }
-    handleGardenClick = (garden) => {
-        this.setState({
-            showHome: true,
-            showPlot: false,
-            showCity: false,
-            showSignIn: false,
-        })
 
+    handleGardenClick = (garden) => {
+      // var gardenD;
+      //   const db = firebase.firestore();
+      // db.collection("gardens/").get().then((snapshot) => {
+      //   snapshot.docs.forEach(doc => {
+      //     if (garden === doc.id){
+      //       console.log(doc.data())
+      //       this.setState({
+      //         gardenData: doc.data()
+      //       })
+      //       // gardenD = doc.data();
+      //     }
+      //   })
+      // })
+
+      for (var i = 0; i < this.state.gardens.length; i++){
+        if (this.state.gardens[i].id === garden){
+          this.setState({
+            gardenData: this.state.gardens[i]
+          })
+        }
+      }
+
+
+      this.setState({
+          showHome: true,
+          showPlot: false,
+          showCity: false,
+          showSignIn: false,
+          // gardenData: gardenD,
+      })
     }
 
   cityClick = () => {

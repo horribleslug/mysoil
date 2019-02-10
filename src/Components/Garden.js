@@ -11,11 +11,18 @@ class Garden extends Component {
 
     render() {
       let data = this.props.data;
-      let gard = this.props.data.currentGarden;
-      console.log(gard);
+      // let gard = this.props.data.currentGarden;
+      console.log(data);
       let plots
-      if(data.gardens[0].plots){
-        plots = data.gardens[0].plots.map(plot => {
+      // if(data.gardens[0].plots){
+      //   plots = data.gardens[0].plots.map(plot => {
+      //     return (
+      //         <Plot key={plot.id} params={plot} toggle={this.handleToggle.bind()}/>
+      //     );
+      //   });
+      // }
+      if(data.gardenData.plots){
+        plots = data.gardenData.plots.map(plot => {
           return (
               <Plot key={plot.id} params={plot} toggle={this.handleToggle.bind()}/>
           );
@@ -32,7 +39,7 @@ class Garden extends Component {
 
       return (
         <div className="Garden">
-          <h1>{data.gardens[0].name}</h1>
+          <h1>{data.gardenData.name}</h1>
 
           <h2>Plots</h2>
           <div className="Plots">
