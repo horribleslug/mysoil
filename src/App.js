@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Garden from './Components/Garden';
 import Data from './Components/Data';
+import PlotPage from './Components/PlotPage'
 import './App.css';
 
 
@@ -129,6 +130,7 @@ class App extends Component {
     return (
       <div className="App">
         <Garden garden={this.state.gardens[0]} users={this.state.users}/>
+        <PlotPage plots={this.state.plots} weather={this.state.weather} needsWater={this.state.needsWater}/>
         <Data/>
       </div>
     );
