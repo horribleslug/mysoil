@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import Garden from './Components/Garden';
 import PlotPage from './Components/PlotPage';
-import CityPage from './Components/CityPage';
-import SignIn from './Components/SignIn';
 import './App.css';
 import firebase from './Components/firebase.js';
 var waterLevels = [];
-
 class App extends Component {
   constructor() {
   	const db = firebase.firestore();
@@ -54,7 +51,7 @@ class App extends Component {
 	  	});
 
 	  });
-    // console.log(gID);
+    console.log(gID);
   	db.collection("gardens/"+gID+"/people").get().then((snapshot) => {
   		snapshot.docs.forEach(doc => {
   			// newUsers.push({
@@ -104,7 +101,6 @@ class App extends Component {
       this.setState({
           showHome: bool,
           showPlot: !bool,
-          showCity: !bool,
       })
   }
 
@@ -153,26 +149,29 @@ class App extends Component {
     e.preventDefault();
   }
 
-  handleLogIn() {
-    console.log('loggedin');
-  }
-
     render(){
       return(
         <div>
           <div className="App">
-            <img onClick = {this._showMessage.bind(null, true)} className="icon" src={require("./Assets/home.png")} alt={"home"} />
-            {this.state.showCity && (<CityPage data={this.state.gardens} toggle={this.handleToggle}/>)}
+            <button className="Nav-button" onClick = {this._showMessage.bind(null, true)} >Enter</button>
             {this.state.showHome && (<Garden data={this.state} toggle={this.handleToggle}/>)}
-<<<<<<< HEAD
             {this.state.showPlot && (<PlotPage water={waterLevels} data={this.state} toggle={this.handleToggle}/>)}
           </div>
-=======
-            {this.state.showPlot && (<PlotPage data={this.state} toggle={this.handleToggle}/>)}
-            <SignIn status={this.handleLogIn}/>
 
->>>>>>> ccee0b97395f4dc77eb418b325ea8a054f6f4b9e
-
+          <div className="test">
+            <form onSubmit ={this.handleSubmitGarden}>
+              <input type="text" name="gardenName" placeholder="What's your garden name?" onChange={this.handleChange} value={this.state.gardenName} />
+              <input type="text" name="gardenLocation" placeholder="49.234123,-123.1231" onChange={this.handleChange} value={this.state.gardenLocation} />
+              <button>Add Garden</button>
+            </form>
+            <form onSubmit ={this.handleSubmitPerson}>
+              <input type="text" name="user" placeholder="Who would you like to add?" onChange={this.handleChange} value={this.state.user} />
+              <button>Add Person</button>
+            </form>
+            <form onSubmit ={this.handleChangeGardenID}>
+              <input type="text" name="gardenID" placeholder="What is the GardenID?" onChange={this.handleChange} value={this.state.gardenID} />
+              <button>Change Garden ID</button>
+            </form>
           </div>
         </div>
 
