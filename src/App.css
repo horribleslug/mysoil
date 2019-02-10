@@ -28,7 +28,7 @@ h2 {
   margin-block-end: 0;
 }
 
-.Plots, .People {
+.Plots, .People, .Tasks {
   overflow: auto;
   white-space: nowrap;
 }

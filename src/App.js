@@ -7,6 +7,24 @@ class App extends Component {
       super();
 
       this.state = {
+        tasks: [
+          {
+            user: "Jake Paul",
+            name: "Water",
+          },
+          {
+            user: "Jon Kim",
+            name: "Harvest",
+          },
+          {
+            user: "Vandy Liu",
+            name: "Weed",
+          },
+          {
+            user: "Brandy Qiu",
+            name: "Prune",
+          },
+        ],
         users: [
           {
             name: "Jake Paul",
@@ -126,7 +144,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Garden garden={this.state.gardens[0]} users={this.state.users}/>
+        <Garden garden={this.state.gardens[0]} users={this.state.users} tasks={this.state.tasks}/>
       </div>
     );
   }

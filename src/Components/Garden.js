@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Plot from './Plot'
 import Profile from './Profile'
+import Task from './Task'
 
 class Garden extends Component {
     constructor () {
@@ -27,6 +28,14 @@ class Garden extends Component {
           );
         });
       }
+      let tasks
+      if(this.props.tasks){
+        tasks = this.props.tasks.map(task => {
+          return (
+              <Task key={task.name} params={task} />
+          );
+        });
+      }
       return (
         <div className="Garden">
           <h1>{this.props.garden.name}</h1>
@@ -34,6 +43,11 @@ class Garden extends Component {
           <h2>Plots</h2>
           <div className="Plots">
             {plots}
+          </div>
+
+          <h2>Tasks</h2>
+          <div className="Tasks">
+            {tasks}
           </div>
 
           <h2>People</h2>
