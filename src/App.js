@@ -1,12 +1,69 @@
 import React, { Component } from 'react';
+import Garden from './Components/Garden';
 import PlotPage from './Components/PlotPage';
-import HomePage from './Components/HomePage';
 import './App.css';
+import firebase from './Components/firebase.js';
 
 import ReactDOM from 'react-dom';
 import { OpenWeatherMap } from 'react-weather';
 
 class App extends Component {
+  constructor() {
+  	const db = firebase.firestore();
+  	super();
+  	this.state = {
+  		user: '',
+  		gardenID: '',
+  		gardenName: '',
+  		gardenLocation: '',
+  		task: '',
+  		users: [],
+  		gardens: []
+  	}
+
+  	const newUsers = [];
+  	const newState = [];
+  	db.collection("gardens").get().then((snapshot) => {
+	  	snapshot.docs.forEach(doc => {
+	  		var newplots = [];
+
+	  		db.collection('gardens/' + doc.id + '/plots').get().then((plot) => {
+	  			plot.docs.forEach(info => {
+	  				newplots.push({
+	  					id: info.id,
+	  					date: info.data().date,
+	  					plant: info.data().plant,
+	  					water: info.data().water
+	  				});
+	  			})
+	  		});
+
+	  		newState.push({
+	  			id: doc.id,
+	  			name: doc.data().name,
+	  			location: doc.data().location,
+	  			people: doc.data().people,
+	  			tasks: doc.data().tasks,
+	  			plots: newplots
+	  		});
+	  	});
+
+	  });
+  	db.collection("users").get().then((snapshot) => {
+  		snapshot.docs.forEach(doc => {
+  			newUsers.push({
+  				id: doc.id,
+  				name: doc.data().name,
+  			});
+  			console.log(newUsers);
+  		});
+	  	this.setState({
+			users: newUsers,
+			gardens: newState
+		});
+  	});
+  }
+
 
   getWeather = async (e) => {
 
@@ -33,10 +90,30 @@ class App extends Component {
     console.log(response);
 
   }
+
+  _showMessage = (bool) => {
+      this.setState({
+          showHome: bool,
+          showPlot: !bool,
+      })
+  }
+
+  handleToggle = () => {
+      this.setState({
+          showHome: !this.state.showHome,
+          showPlot: !this.state.showPlot,
+      })
+  }
+
     render(){
       return(
-      <HomePage />
+        <div className="App">
+          <button className="Nav-button" onClick = {this._showMessage.bind(null, true)} >Enter</button>
+          {this.state.showHome && (<Garden data={this.state} toggle={this.handleToggle}/>)}
+          {this.state.showPlot && (<PlotPage data={this.state} toggle={this.handleToggle}/>)}
+        </div>
       )
+
     }
 
 }
