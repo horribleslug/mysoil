@@ -17,7 +17,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prod": "pm2 start ./server.js --name mySoil",
+    "prod": "pm2 start ./server.js --name mySoil"
   },
   "eslintConfig": {
     "extends": "react-app"
