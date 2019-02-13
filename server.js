@@ -25,10 +25,10 @@ const app = express();
 
 app.use(compression());
 
-app.use('/static', express.static(__dirname + '/public'));
+app.use('/static', express.static(__dirname));
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public'));
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 const PORT = process.env.PORT || 3002;
